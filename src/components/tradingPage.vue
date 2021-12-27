@@ -1,128 +1,152 @@
 <template>
-  
-  <grid-layout
-    v-model:layout="layout"
-    :responsive-layouts="layouts"
-    :col-num="12"
-    :row-height="30"
-    :is-draggable="draggable"
-    :is-resizable="resizable"
-    :vertical-compact="true"
-    :use-css-transforms="true"
-    :responsive="responsive"
-    @breakpoint-changed="breakpointChangedEvent"
-  >
-    <grid-item
-      v-for="item in layout"
-      :x="item.x"
-      :y="item.y"
-      :w="item.w"
-      :h="item.h"
-      :i="item.i"
-      :key="item.i"
+  <div style="background: black" class="full">
+    <grid-layout
+      :layout="layout"
+      :col-num="12"
+      :row-height="1"
+      :is-draggable="false"
+      :is-resizable="false"
+      :autoSize="true"
+      :is-mirrored="false"
+      :vertical-compact="true"
+      :margin="[0, 0]"
+      :use-css-transforms="true"
     >
-      <component v-if="item.isComponent" :is="item.c"></component>
-    <div v-else v-html="item.c"></div>
-    </grid-item>
-  </grid-layout>
+      <grid-item
+        :x="cards.marketInfo.x"
+        :y="cards.marketInfo.y"
+        :w="cards.marketInfo.w"
+        :h="cards.marketInfo.h"
+        :i="cards.marketInfo.i"
+        :key="cards.marketInfo.i"
+      >
+        <div style="align-self: center">{{ cards.marketInfo.title }}</div>
+        <!-- Market info component goes here -->
+      </grid-item>
+      <grid-item
+        :x="cards.chooseMarket.x"
+        :y="cards.chooseMarket.y"
+        :w="cards.chooseMarket.w"
+        :h="cards.chooseMarket.h"
+        :i="cards.chooseMarket.i"
+        :key="cards.chooseMarket.i"
+      >
+        <div style="align-self: center">{{ cards.chooseMarket.title }}</div>
+        <!-- Choose market dropdown component goes here -->
+      </grid-item>
+      <grid-item
+        :x="cards.recentTrades.x"
+        :y="cards.recentTrades.y"
+        :w="cards.recentTrades.w"
+        :h="cards.recentTrades.h"
+        :i="cards.recentTrades.i"
+        :key="cards.recentTrades.i"
+      >
+        <div style="align-self: center">{{ cards.recentTrades.title }}</div>
+        <!-- recent trades component goes here -->
+      </grid-item>
+      <grid-item
+        :x="cards.chart.x"
+        :y="cards.chart.y"
+        :w="cards.chart.w"
+        :h="cards.chart.h"
+        :i="cards.chart.i"
+        :key="cards.chart.i"
+      >
+        <div style="align-self: center">{{ cards.chart.title }}</div>
+        <!-- chart goes here -->
+      </grid-item>
+      <grid-item
+        :x="cards.buySell.x"
+        :y="cards.buySell.y"
+        :w="cards.buySell.w"
+        :h="cards.buySell.h"
+        :i="cards.buySell.i"
+        :key="cards.buySell.i"
+      >
+        <div style="align-self: center">{{ cards.buySell.title }}</div>
+        <!-- buy sell component goes here -->
+      </grid-item>
+      <grid-item
+        :x="cards.positions.x"
+        :y="cards.positions.y"
+        :w="cards.positions.w"
+        :h="cards.positions.h"
+        :i="cards.positions.i"
+        :key="cards.positions.i"
+      >
+        <div style="align-self: center">{{ cards.positions.title }}</div>
+        <!-- open positions component goes here -->
+      </grid-item>
+      <grid-item
+        :x="cards.accountInfo.x"
+        :y="cards.accountInfo.y"
+        :w="cards.accountInfo.w"
+        :h="cards.accountInfo.h"
+        :i="cards.accountInfo.i"
+        :key="cards.accountInfo.i"
+      >
+        <div style="align-self: center">{{ cards.accountInfo.title }}</div>
+        <!-- Account Info component goes here -->
+      </grid-item>
+    </grid-layout>
+  </div>
 </template>
 
 <script>
-import { ref } from "vue";
-import { GridLayout, GridItem } from "vue-grid-layout"
-import Hellow from './hello.vue'
+import { GridLayout, GridItem } from "vue-grid-layout";
 
-let layout = {
-    md: [
-        // {"x":0, "y":0, "w":8, "h":2, "i":"0", "c":'Hellow', isComponent: true},
-        // {"x":2, "y":0, "w":2, "h":4, "i":"1", "c":'1', isComponent: false},
-        // {"x":4, "y":0, "w":2, "h":5, "i":"2", "c":'2', isComponent: false},
-        // {"x":6, "y":0, "w":2, "h":3, "i":"3", "c":'3', isComponent: false},
-        // {"x":2, "y":4, "w":2, "h":3, "i":"4", "c":'4', isComponent: false},
-        // {"x":4, "y":5, "w":2, "h":3, "i":"5", "c":'5', isComponent: false},
-        // {"x":2, "y":0, "w":2, "h":5, "i":"6", "c":'6', isComponent: false}
-    ],
-    lg: [
-        {"x":0,"y":0,"w":8,"h":2,"i":"0", "c":'Hellow', isComponent: true},
-        {"x":8,"y":0,"w":4,"h":2,"i":"1", "c":'<h1>Dropdown here</h1>', isComponent: false},
-        {"x":0,"y":1,"w":3,"h":2,"i":"2", "c":'<h1>Recent Trades</h1>', isComponent: false},
-        {"x":3,"y":1,"w":5,"h":2,"i":"3", "c":'<h1>Charts</h1>', isComponent: false},
-        {"x":8,"y":1,"w":4,"h":2,"i":"4", "c":'<h1>But/shell</h1>', isComponent: false},
-        {"x":0,"y":2,"w":8,"h":2,"i":"5", "c":'<h1>My Position</h1>', isComponent: false},
-        {"x":8,"y":2,"w":4,"h":2,"i":"7", "c":'<h1>Total</h1>', isComponent: false},
-    ],
-};
 export default {
   components: {
-        GridLayout,
-        GridItem,
-        Hellow
-    },
-    data() {
-        return {
-            layouts: layout,
-            layout: layout["lg"],
-            draggable: false,
-            resizable: false,
-            responsive: true,
-        }
-    },
-    methods: {
-        breakpointChangedEvent: function(newBreakpoint, newLayout){
-            console.log("BREAKPOINT CHANGED breakpoint=", newBreakpoint, ", layout: ", newLayout );
-        }
-    }
+    GridLayout,
+    GridItem,
+  },
+  setup() {
+    const cards = {
+      marketInfo: { x: 0, y: 1, w: 9, h: 79, i: "0", title: "Market Info" },
+      chooseMarket: {
+        x: 9,
+        y: 1,
+        w: 3,
+        h: 79,
+        i: "1",
+        title: "Choose Market",
+      },
+      recentTrades: {
+        x: 0,
+        y: 2,
+        w: 3,
+        h: 592,
+        i: "2",
+        title: "Recent Trades",
+      },
+      chart: {
+        x: 3,
+        y: 2,
+        w: 6,
+        h: 592,
+        i: "3",
+        title: "Chart (TradingView)",
+      },
+      buySell: { x: 9, y: 2, w: 3, h: 592, i: "4", title: "Buy/Sell" },
+      positions: { x: 0, y: 3, w: 9, h: 341, i: "5", title: "Positions" },
+      accountInfo: { x: 9, y: 3, w: 3, h: 341, i: "6", title: "Account info" },
+    };
+
+    // This return you can use in the template
+    return {
+      cards,
+      layout: Object.keys(cards).map((key) => cards[key]),
+    };
+  },
 };
 </script>
+
 <style scoped>
-.vue-grid-layout {
-  background: #eee;
-}
 .vue-grid-item:not(.vue-grid-placeholder) {
-  background: #ccc;
-  border: 1px solid black;
-}
-.vue-grid-item .resizing {
-  opacity: 0.9;
-}
-.vue-grid-item .static {
-  background: #cce;
-}
-.vue-grid-item .text {
-  font-size: 24px;
-  text-align: center;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: 100%;
-  width: 100%;
-}
-.vue-grid-item .no-drag {
-  height: 100%;
-  width: 100%;
-}
-.vue-grid-item .minMax {
-  font-size: 12px;
-}
-.vue-grid-item .add {
-  cursor: pointer;
-}
-.vue-draggable-handle {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  top: 0;
-  left: 0;
-  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='10'><circle cx='5' cy='5' r='5' fill='#999999'/></svg>")
-    no-repeat;
-  background-position: bottom right;
-  padding: 0 8px 8px 0;
-  background-repeat: no-repeat;
-  background-origin: content-box;
-  box-sizing: border-box;
-  cursor: pointer;
+  border: 1px solid greenyellow;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
 }
 </style>
