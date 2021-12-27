@@ -1,55 +1,24 @@
 <template>
-  <!-- <grid-layout
-   
-   
-                     :col-num="12"
-                     :row-height="30"
-                     :draggable="true"
-                     :is-resizable="true"
-                     :vertical-compact="false"
-                     :use-css-transforms="true"
-                     :responsive="responsive"
-                     
-  >
-    <grid-item
-       :x=0 
-       :y=0 
-       :w=12 
-       :h=2 
-       :i=0
-    >
-      <span class="text">1</span>
-    </grid-item>
-    <grid-item
-       :x=1 
-       :y=1 
-       :w=12 
-       :h=2 
-       :i=0
-    >
-      <span class="text">2</span>
-    </grid-item>
-  </grid-layout>  -->
   
   <grid-layout
     v-model:layout="layout"
-   :responsive-layouts="layouts"
-                     :col-num="12"
-                     :row-height="30"
-                     :is-draggable="draggable"
-                     :is-resizable="resizable"
-                     :vertical-compact="true"
-                     :use-css-transforms="true"
-                     :responsive="responsive"
-                     @breakpoint-changed="breakpointChangedEvent"
+    :responsive-layouts="layouts"
+    :col-num="12"
+    :row-height="30"
+    :is-draggable="draggable"
+    :is-resizable="resizable"
+    :vertical-compact="true"
+    :use-css-transforms="true"
+    :responsive="responsive"
+    @breakpoint-changed="breakpointChangedEvent"
   >
     <grid-item
       v-for="item in layout"
-       :x="item.x"
-                       :y="item.y"
-                       :w="item.w"
-                       :h="item.h"
-                       :i="item.i"
+      :x="item.x"
+      :y="item.y"
+      :w="item.w"
+      :h="item.h"
+      :i="item.i"
       :key="item.i"
     >
       <component v-if="item.isComponent" :is="item.c"></component>
@@ -74,13 +43,13 @@ let layout = {
         // {"x":2, "y":0, "w":2, "h":5, "i":"6", "c":'6', isComponent: false}
     ],
     lg: [
-        {"x":0,"y":0,"w":7,"h":2,"i":"0", "c":'Hellow', isComponent: true},
-        {"x":8,"y":0,"w":2,"h":2,"i":"1", "c":'<h1>Hello World</h1>', isComponent: false},
-        // {"x":4,"y":0,"w":2,"h":5,"i":"2", "c":'2', isComponent: false},
-        // {"x":6,"y":0,"w":2,"h":3,"i":"3", "c":'3', isComponent: false},
-        // {"x":12,"y":0,"w":2,"h":3,"i":"4", "c":'4', isComponent: false},
-        // {"x":1,"y":1,"w":2,"h":3,"i":"5", "c":'5', isComponent: false},
-        // {"x":0,"y":5,"w":2,"h":5,"i":"6",  "c":'6', isComponent: false},
+        {"x":0,"y":0,"w":8,"h":2,"i":"0", "c":'Hellow', isComponent: true},
+        {"x":8,"y":0,"w":4,"h":2,"i":"1", "c":'<h1>Dropdown here</h1>', isComponent: false},
+        {"x":0,"y":1,"w":3,"h":2,"i":"2", "c":'<h1>Recent Trades</h1>', isComponent: false},
+        {"x":3,"y":1,"w":5,"h":2,"i":"3", "c":'<h1>Charts</h1>', isComponent: false},
+        {"x":8,"y":1,"w":4,"h":2,"i":"4", "c":'<h1>But/shell</h1>', isComponent: false},
+        {"x":0,"y":2,"w":8,"h":2,"i":"5", "c":'<h1>My Position</h1>', isComponent: false},
+        {"x":8,"y":2,"w":4,"h":2,"i":"7", "c":'<h1>Total</h1>', isComponent: false},
     ],
 };
 export default {
